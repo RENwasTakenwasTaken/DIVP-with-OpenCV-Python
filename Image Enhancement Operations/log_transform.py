@@ -17,7 +17,17 @@ else:
 print(img)
 
 def T(r):
+    '''
+    Textbook formula:
+
+    result = c * log(1 + r)
+
+    sometimes, r may be 0. To ensure that log(0) = Inf. does not happen, 1 + r is done.
+
+    Next, c is simply scales the result to some readable value. Otherwise, all would become dark (since the image itself is darks)
+    '''
     c = 255 / np.log(256)
+    # c = 10 # Middle value of range.
     result = c * np.log(1 + r)
 
     if result >= 255:
