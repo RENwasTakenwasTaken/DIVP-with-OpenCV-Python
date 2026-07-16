@@ -1,0 +1,30 @@
+
+<ApplicationScreen>:
+    orientation: 'vertical'
+    canvas.before:
+        Color:
+            rgba: 0, 0, 0, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    BoxLayout:  # Top Bar.
+        Button:
+            text: "Choose Image"
+            on_press: root.open_file_dialog()
+
+        Label:
+            text: "No images imported."
+
+    BoxLayout:  # Middle Section.
+        Scatter:    # Canvas.
+            do_rotation: False
+            do_scale: True
+            do_translation: True
+            
+            Image:
+                source: root.image_source
+                size: root.image_width, root.image_height
+
+        BoxLayout:     # Layer manager.
+            orientation: 'vertical'

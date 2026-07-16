@@ -1,12 +1,13 @@
 import cv2
 import numpy as np
 
+N = 256
 img = cv2.imread("images/nature.jpg", cv2.IMREAD_GRAYSCALE)
 
 print(img)
 
 def T(r):
-    return 255 - r
+    return N - 1 - r
 
 while True:
     cv2.imshow("Image", img)
