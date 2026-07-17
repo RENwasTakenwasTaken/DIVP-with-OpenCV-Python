@@ -9,22 +9,35 @@
             pos: self.pos
 
     BoxLayout:  # Top Bar.
+        size_hint_y: 0.1
         Button:
             text: "Choose Image"
             on_press: root.open_file_dialog()
+            size_hint: None, None
+            width: 200
 
         Label:
-            text: "No images imported."
+            id: title_bar_text
+            text: "No images added"
+
+    BoxLayout: # Tool Bar.
+        size_hint_y: 0.1
+        Button:
+            text: "Invert"
+            on_press: root.apply_image_negation()
+
+        Button:
+            text: "Apply Log"
+            on_press: root.apply_image_log_transform()
+
+        Button:
+            text: "Image Data"
+            on_press: root.print_image_data()
 
     BoxLayout:  # Middle Section.
-        Scatter:    # Canvas.
-            do_rotation: False
-            do_scale: True
-            do_translation: True
+        ImageCanvas:
+            id: image_canvas
             
-            Image:
-                source: root.image_source
-                size: root.image_width, root.image_height
-
         BoxLayout:     # Layer manager.
+            size_hint_x: 0.1
             orientation: 'vertical'

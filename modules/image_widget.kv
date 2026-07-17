@@ -1,12 +1,5 @@
-ImageWidget:
-    orientation: 'vertical'
-    Scatter:
-        do_rotation: False
-        do_scale: True
-        do_translation: True
-        
-        Image:
-            source=root.image_source
+<ImageCanvas>:
+    Image:
+        id: image
+        source: root.image_source
 
-    Label:
-        text: root.image_filename
