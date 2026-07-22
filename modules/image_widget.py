@@ -16,6 +16,12 @@ class ImageCanvas(BoxLayout):
 
     def _extract_extension(self, image_path):
         return image_path.split('.')[-1]
+    
+    def get_image(self):
+        return self.image
+    
+    def get_image_size(self):
+        return (self.image.shape[0], self.image.shape[1])
 
     def set_image(self, image=None, image_path=None):
         '''
@@ -49,3 +55,9 @@ class ImageCanvas(BoxLayout):
 
     def print_image_data(self):
         print(self.image)
+
+    def resize_image(self, w, h):
+        self.set_image(image_operations.resize_image(self.image, w, h))
+
+    def gamma_transform(self):
+        self.set_image(image_operations.gamma_transform(self.image))

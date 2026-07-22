@@ -34,8 +34,16 @@
             text: "Image Data"
             on_press: root.print_image_data()
 
+        Button:
+            text: "Resize Image"
+            on_press: root.resize_image()
+
+        Button:
+            text: "Gamma Transform"
+            on_press: root.gamma_transform()
+
     BoxLayout:  # Middle Section.
-        ImageCanvas:
+        ImageCanvas:    
             id: image_canvas
             
         BoxLayout:     # Layer manager.

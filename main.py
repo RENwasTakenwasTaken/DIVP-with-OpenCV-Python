@@ -20,6 +20,7 @@ from kivy.uix.image import Image
 from modules.file_manager import FileDialog
 from modules.temp_manager import TempManager
 from modules.image_widget import ImageCanvas
+from modules.userinputmodal import InputPopup
 
 Builder.load_file("ui.kv")
 
@@ -38,7 +39,8 @@ class ApplicationScreen(BoxLayout):
             print("Image not selected.")
 
     def update_file_path(self, path):
-        self.ids.title_bar_text.text = path
+        w, h = self.image_canvas.get_image_size()
+        self.ids.title_bar_text.text = f"{path} {w}x{h}"
 
     def apply_image_negation(self):
         self.image_canvas.negate()
@@ -48,6 +50,15 @@ class ApplicationScreen(BoxLayout):
 
     def print_image_data(self):
         self.image_canvas.print_image_data()
+
+    def resize_image(self):
+        def _resize_image(w, h):
+            self.image_canvas.resize_image(w, h)
+
+        InputPopup(_resize_image, ["width", "height"]).open()
+
+    def gamma_transform(self):
+        self.image_canvas.gamma_transform()
 
 class ArchImageEditor(App):
     def build(self):

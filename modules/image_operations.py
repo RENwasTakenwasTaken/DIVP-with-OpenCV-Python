@@ -12,6 +12,9 @@ class ImageOperations:
 
     @staticmethod
     def image_negative(image):
+        '''
+        Alternatively, cv2.bitwise_not() also works.
+        '''
         N = 256
 
         def T(r):
@@ -23,6 +26,24 @@ class ImageOperations:
                 image[i][j] = s
 
         return image
+
+    def gamma_transform(image):
+        gamma = float(input("Enter gamma value: "))
+        c = 1
+
+        def T(r, gamma):
+            return c * pow(r, gamma)
+
+        for i, row in enumerate(image):
+            for j, r in enumerate(row):
+                s = T(r, gamma)
+                image[i][j] = s
+
+        return image
+
+    @staticmethod
+    def resize_image(image, w, h):
+        return cv2.resize(image, (w, h))
 
     @staticmethod
     def log_transform(image):
@@ -54,3 +75,16 @@ class ImageOperations:
                 image[i][j] = s
 
         return image
+    
+    def contrast_stretch(): 
+        def T(r, r1, s1, r2, s2):
+            alpha = s1 / r1
+            # beta = alpha + 
+            # gamma = 
+            if 0 <= r <= r1:
+                return 
+
+        r1, s1, r2, s2 = map(int, input("Enter (r1, s1, r2, s2) values as .csv: ").split(','))
+
+    def binary_mask():
+        r = int(input("Enter value of r1: "))
